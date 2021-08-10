@@ -1,14 +1,15 @@
 { checkMaterialization ? false
+, system ? builtins.currentSystem
 }:
 
 let
-  sources = import ../nix/sources.nix;
+  sources = import ../nix/sources.nix { inherit system; };
 
   pkgs =
     let
-      haskell-nix = import sources."haskell.nix" {};
+      haskell-nix = import sources."haskell.nix" { inherit system; };
       inherit (haskell-nix) nixpkgsArgs;
-      args = nixpkgsArgs // { };
+      args = nixpkgsArgs // { inherit system; };
     in import haskell-nix.sources.nixpkgs args;
   inherit (pkgs) lib haskell-nix;
 

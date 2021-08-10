@@ -1,14 +1,14 @@
 {
     "haskell.nix": {
-        "branch": "7078b145e981e8b14fc7ea62126fab3378090ef4",
+        "branch": "preflake",
         "description": "Alternative Haskell Infrastructure for Nixpkgs",
         "homepage": "https://input-output-hk.github.io/haskell.nix",
         "owner": "input-output-hk",
         "repo": "haskell.nix",
-        "rev": "7078b145e981e8b14fc7ea62126fab3378090ef4",
-        "sha256": "01vwsz14nkjd4qggxxmscmvvfcsbch0lf0frvldf8p4w1rwl54va",
+        "rev": "3b3104119b306eff62f183b92725e190fb0b43e4",
+        "sha256": "1jl10lqkpzjyrk4k8qnmpl1lmk4j68998a64ca9sqnlr5ns22sba",
         "type": "tarball",
-        "url": "https://github.com/input-output-hk/haskell.nix/archive/7078b145e981e8b14fc7ea62126fab3378090ef4.tar.gz",
+        "url": "https://github.com/input-output-hk/haskell.nix/archive/3b3104119b306eff62f183b92725e190fb0b43e4.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "niv": {
@@ -27,12 +27,12 @@
         "branch": "main",
         "description": "A library of useful Nix functions",
         "homepage": null,
-        "owner": "ttuegel",
+        "owner": "kreisys",
         "repo": "nix-lib",
-        "rev": "66bb0ab890ff4d828a2dcfc7d5968465d0c7084f",
-        "sha256": "03828qxfxc1xv44jj6y2ar5h58lcppg0admn0smqzm3s1gk6rbnc",
+        "rev": "7034b7bf0a0cf9087cf4f9c588dcb46470dd3673",
+        "sha256": "0mzalwvv54c21mpjmy9ykcsr6a91zk4srkakbaj1rr79pn88nyd0",
         "type": "tarball",
-        "url": "https://github.com/ttuegel/nix-lib/archive/66bb0ab890ff4d828a2dcfc7d5968465d0c7084f.tar.gz",
+        "url": "https://github.com/kreisys/nix-lib/archive/7034b7bf0a0cf9087cf4f9c588dcb46470dd3673.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "nixpkgs": {

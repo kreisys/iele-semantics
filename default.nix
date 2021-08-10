@@ -1,15 +1,12 @@
-let
-  sources = import ./nix/sources.nix {};
-  pinned = import sources."nixpkgs" {};
-in
-
-{ pkgs ? pinned
+{ sources ? import ./nix/sources.nix { inherit system; }
+, system ? builtins.currentSystem
 , release ? null
 }:
 
 let release_ = release; in
 
 let
+  pkgs = import sources."nixpkgs" { inherit system; };
   inherit (pkgs) lib;
   ttuegel = import sources."nix-lib" { inherit pkgs; };
 
@@ -19,9 +16,17 @@ let
     let
       tag = lib.fileContents ./deps/k_release;
       url = "https://github.com/kframework/k/releases/download/${tag}/release.nix";
-      args = import (builtins.fetchurl { inherit url; });
-      src = pkgs.fetchgit args;
-    in import src { inherit release; };
+      args = import (builtins.fetchurl {
+        inherit url;
+        sha256 = "sha256:16axhma1r6kvmppbdcwnbp12v5sxcwq6k091bkd8gi65znf68d1g";
+      });
+      # src = pkgs.fetchgit args;
+      src = builtins.fetchGit {
+        url = "https://github.com/kreisys/k";
+        submodules = true;
+        rev = "b9cb57a6f319e2f84d3feace2b372dd5fe9df562";
+      };
+    in import src { inherit release system; };
   inherit (kframework) k haskell-backend llvm-backend clang;
   llvmPackages = pkgs.llvmPackages_10;
 in
@@ -51,7 +56,7 @@ let
     inherit (pkgs.python2Packages) python;
     inherit (iele-assemble) iele-assemble;
   };
-  iele-assemble = import ./iele-assemble {};
+  iele-assemble = import ./iele-assemble { inherit system; };
 
   default =
     {
