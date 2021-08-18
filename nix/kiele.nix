@@ -50,7 +50,11 @@ let
 
   iele-vm = mkIELE "vm" (x: x);
 
-  iele-check = mkIELE "check" (x: x);
+  iele-check = mkIELE "check" (x: x // {
+    preInstall = ''
+      ln -sf ./parser_KItem_IELE-SYNTAX .build/check/well-formedness-kompiled/parser_PGM
+    '';
+  });
 
   host-PATH = lib.makeBinPath [ k llvm-backend haskell-backend ];
 

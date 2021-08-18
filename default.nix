@@ -1,20 +1,13 @@
 { sources ? import ./nix/sources.nix { inherit system; }
+, pkgs ? import sources."nixpkgs" { inherit system; }
 , system ? builtins.currentSystem
 , release ? null
-}:
-
-let release_ = release; in
-
-let
-  pkgs = import sources."nixpkgs" { inherit system; };
-  inherit (pkgs) lib;
-  ttuegel = import sources."nix-lib" { inherit pkgs; };
-
-  release = if release_ == null then pkgs.stdenv.isLinux else false;
-
-  kframework =
+, src ? ./.
+, kframework ?
+    let release_ = release; in
     let
-      tag = lib.fileContents ./deps/k_release;
+      release = if release_ == null then pkgs.stdenv.isLinux else false;
+      tag = pkgs.lib.fileContents ./deps/k_release;
       url = "https://github.com/kframework/k/releases/download/${tag}/release.nix";
       args = import (builtins.fetchurl {
         inherit url;
@@ -26,9 +19,18 @@ let
         submodules = true;
         rev = "b9cb57a6f319e2f84d3feace2b372dd5fe9df562";
       };
-    in import src { inherit release system; };
+    in import src { inherit release system; }
+}:
+
+
+let
+  inherit (pkgs) lib;
+  ttuegel = import sources."nix-lib" { inherit pkgs; };
+
+
   inherit (kframework) k haskell-backend llvm-backend clang;
   llvmPackages = pkgs.llvmPackages_10;
+  src' = src;
 in
 
 let
@@ -38,13 +40,13 @@ in
 let
   src = ttuegel.cleanGitSubtree {
     name = "iele-semantics";
-    src = ./.;
+    src = src';
   };
   libff = callPackage ./nix/libff.nix {
     stdenv = llvmPackages.stdenv;
     src = ttuegel.cleanGitSubtree {
       name = "libff";
-      src = ./.;
+      src = src';
       subDir = "plugin/deps/libff";
     };
   };
@@ -60,7 +62,7 @@ let
 
   default =
     {
-      inherit kiele;
+      inherit kiele libff clang;
       inherit (iele-assemble) iele-assemble;
     };
 

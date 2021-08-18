@@ -1,26 +1,217 @@
 {
   "nodes": {
+    "ethereum-tests": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1509014064,
+        "narHash": "sha256-m99SZK5FznmMo0deuT42cfuBM4BTdc2yYWHush35uP0=",
+        "ref": "develop",
+        "rev": "7057d0e021f7dbee37a2ddb6acf34f4946bc157d",
+        "revCount": 1614,
+        "submodules": true,
+        "type": "git",
+        "url": "https://github.com/ethereum/tests"
+      },
+      "original": {
+        "ref": "develop",
+        "rev": "7057d0e021f7dbee37a2ddb6acf34f4946bc157d",
+        "submodules": true,
+        "type": "git",
+        "url": "https://github.com/ethereum/tests"
+      }
+    },
+    "haskell-backend": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1629149595,
+        "narHash": "sha256-r1T9LNHtVVrckEmbRQUFpZ8QOv6IHxMNnh0JbsJ1PNs=",
+        "rev": "65e36305b91eab085a2f1a1a56187dedc3a8b1e8",
+        "revCount": 3742,
+        "submodules": true,
+        "type": "git",
+        "url": "https://github.com/kreisys/kore"
+      },
+      "original": {
+        "rev": "65e36305b91eab085a2f1a1a56187dedc3a8b1e8",
+        "submodules": true,
+        "type": "git",
+        "url": "https://github.com/kreisys/kore"
+      }
+    },
+    "k-web-theme": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1628512103,
+        "narHash": "sha256-i8RUJ7x918KFbldAL2kxj+/uuRrhljfeGchEKeRhoDw=",
+        "rev": "189fe6650488f8f04dc89d25a61cdfd888cd9dd8",
+        "revCount": 15,
+        "submodules": true,
+        "type": "git",
+        "url": "https://github.com/runtimeverification/k-web-theme"
+      },
+      "original": {
+        "rev": "189fe6650488f8f04dc89d25a61cdfd888cd9dd8",
+        "submodules": true,
+        "type": "git",
+        "url": "https://github.com/runtimeverification/k-web-theme"
+      }
+    },
+    "k-web-theme_2": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1628512103,
+        "narHash": "sha256-i8RUJ7x918KFbldAL2kxj+/uuRrhljfeGchEKeRhoDw=",
+        "rev": "189fe6650488f8f04dc89d25a61cdfd888cd9dd8",
+        "revCount": 15,
+        "submodules": true,
+        "type": "git",
+        "url": "https://github.com/runtimeverification/k-web-theme"
+      },
+      "original": {
+        "rev": "189fe6650488f8f04dc89d25a61cdfd888cd9dd8",
+        "submodules": true,
+        "type": "git",
+        "url": "https://github.com/runtimeverification/k-web-theme"
+      }
+    },
+    "kframework": {
+      "inputs": {
+        "haskell-backend": "haskell-backend",
+        "k-web-theme": "k-web-theme_2",
+        "llvm-backend": "llvm-backend",
+        "nixpkgs": "nixpkgs",
+        "utils": "utils"
+      },
+      "locked": {
+        "lastModified": 1629296366,
+        "narHash": "sha256-YdB2jwujAY9Jqf8GZz162d/yQ62+OZ24wbufhYbmaYo=",
+        "ref": "master",
+        "rev": "eaa387ea59dae0446057a96fa781cc67b564390f",
+        "revCount": 16427,
+        "submodules": true,
+        "type": "git",
+        "url": "https://github.com/kreisys/k"
+      },
+      "original": {
+        "submodules": true,
+        "type": "git",
+        "url": "https://github.com/kreisys/k"
+      }
+    },
+    "llvm-backend": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1629149797,
+        "narHash": "sha256-mFHKbcxu0JacTUOjvu2CPdEIAa478DPMbi/f6Yrkh0o=",
+        "rev": "dc7eebd37782204e1988483269a34a70bf1a697c",
+        "revCount": 351,
+        "submodules": true,
+        "type": "git",
+        "url": "https://github.com/kreisys/llvm-backend"
+      },
+      "original": {
+        "rev": "dc7eebd37782204e1988483269a34a70bf1a697c",
+        "submodules": true,
+        "type": "git",
+        "url": "https://github.com/kreisys/llvm-backend"
+      }
+    },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1628632825,
-        "narHash": "sha256-z/K/ZmOToCWDKE0R0vtOldX1SSj0P94NVOWoN8+8+50=",
+        "lastModified": 1605269894,
+        "narHash": "sha256-1mGM9XVw0XLGLP5HPA7o+/ahHO0vXIZEr31L/9IHi0I=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "c6aa7bdae0143c41043968a3abd9a9727a6cdf5a",
+        "rev": "16b3b1eef03e6fb8211b095079aba5059f26081e",
         "type": "github"
       },
       "original": {
-        "id": "nixpkgs",
-        "type": "indirect"
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "16b3b1eef03e6fb8211b095079aba5059f26081e",
+        "type": "github"
+      }
+    },
+    "nixpkgs_2": {
+      "locked": {
+        "lastModified": 1605721780,
+        "narHash": "sha256-MhaNS4HGHcOCwW+HadSxustHTzD1LWznh584eYBvJ5Q=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "58f9c4c7d3a42c912362ca68577162e38ea8edfb",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "58f9c4c7d3a42c912362ca68577162e38ea8edfb",
+        "type": "github"
+      }
+    },
+    "plugin": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1610990322,
+        "narHash": "sha256-lNuD9+kmewsquM5tMejdN3w6H+B1RU26660hKTsaQZ8=",
+        "rev": "cc7384e565e4c8df4d17a3330cd9951d32d4830f",
+        "revCount": 118,
+        "submodules": true,
+        "type": "git",
+        "url": "https://github.com/runtimeverification/blockchain-k-plugin"
+      },
+      "original": {
+        "rev": "cc7384e565e4c8df4d17a3330cd9951d32d4830f",
+        "submodules": true,
+        "type": "git",
+        "url": "https://github.com/runtimeverification/blockchain-k-plugin"
       }
     },
     "root": {
       "inputs": {
-        "nixpkgs": "nixpkgs",
-        "utils": "utils"
+        "ethereum-tests": "ethereum-tests",
+        "k-web-theme": "k-web-theme",
+        "kframework": "kframework",
+        "nixpkgs": "nixpkgs_2",
+        "plugin": "plugin",
+        "secp256k1": "secp256k1",
+        "utils": "utils_2"
+      }
+    },
+    "secp256k1": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1502408521,
+        "narHash": "sha256-PyqNZGER9VypH35S/aU4EBeepieI3BGXrYsJ141os24=",
+        "ref": "master",
+        "rev": "f532bdc9f77f7bbf7e93faabfbe9c483f0a9f75f",
+        "revCount": 800,
+        "submodules": true,
+        "type": "git",
+        "url": "https://github.com/bitcoin-core/secp256k1"
+      },
+      "original": {
+        "rev": "f532bdc9f77f7bbf7e93faabfbe9c483f0a9f75f",
+        "submodules": true,
+        "type": "git",
+        "url": "https://github.com/bitcoin-core/secp256k1"
       }
     },
     "utils": {
+      "locked": {
+        "lastModified": 1628100524,
+        "narHash": "sha256-vqI3p9fNj0C4ykTwMjryztszLHq9YU7AUkRJ9BK7rpE=",
+        "owner": "kreisys",
+        "repo": "flake-utils",
+        "rev": "7e5e32b9b20e6091adf27d7cdb1e0a0578b6f4f6",
+        "type": "github"
+      },
+      "original": {
+        "owner": "kreisys",
+        "repo": "flake-utils",
+        "type": "github"
+      }
+    },
+    "utils_2": {
       "locked": {
         "lastModified": 1628100524,
         "narHash": "sha256-vqI3p9fNj0C4ykTwMjryztszLHq9YU7AUkRJ9BK7rpE=",
