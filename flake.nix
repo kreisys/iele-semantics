@@ -4,8 +4,6 @@
   inputs = {
     utils.url = "github:kreisys/flake-utils";
 
-    nixpkgs.url = "github:NixOS/nixpkgs/58f9c4c7d3a42c912362ca68577162e38ea8edfb";
-
     kframework = {
       type = "git";
       url = "https://github.com/kreisys/k";
