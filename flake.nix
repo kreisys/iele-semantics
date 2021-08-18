@@ -50,8 +50,8 @@
       inherit nixpkgs;
       systems = [ "x86_64-linux" ];
 
-      packages = { system, runCommand }: let
-        src = runCommand "src" { } ''
+      overlay = final: prev: let
+        src = final.runCommand "src" { } ''
           cp -r ${self} $out
           chmod -R +w $_
     
@@ -61,73 +61,17 @@
           cp -r "${secp256k1}" $_/secp256k1
           cp -r "${ethereum-tests}" $out/tests/ethereum-tests
         '';
-
-      in rec {
+        inherit (final) system;
+      in {
         inherit (import src {
           inherit system;
           kframework = kframework.legacyPackages.${system};
         }) kiele kiele-assemble libff;
-        defaultPackage = kiele;
       };
 
-      shell =
-        { mkShell
-        , clang
-        , protobuf
-        , bashInteractive
-        , cmake
-        , cryptopp
-        , gmp
-        , procps
-        , mpfr
-        , opam
-        , openssl
-        , python
-        , secp256k1
-        , stack
-        , pkgconfig
-        , rapidjson
-        , zlib
-        , system
-        }: mkShell rec {
-          nativeBuildInputs = buildInputs;
-          buildInputs =
-            let
-              inherit (kframework.legacyPackages.${system})
-                k haskell-backend llvm-backend;
-
-                inherit (self.legacyPackages.${system}) libff;
-            in
-            [
-              clang
-              cmake
-              cryptopp
-              gmp
-              haskell-backend
-              k
-              libff
-              llvm-backend
-              mpfr
-              opam
-              openssl
-              pkgconfig
-              procps
-              protobuf
-              python
-              rapidjson
-              secp256k1
-              stack
-              zlib
-            ];
-
-          SHELL = "${bashInteractive}/bin/bash";
-          shellHook = ''
-            tail -n8 INSTALL.md
-          '';
-
-          SYSTEM_LIBFF = true;
-          SYSTEM_LIBSECP256K1 = true;
-          SYSTEM_LIBCRYPTOPP = true;
-        };
+      packages = { kiele }: rec {
+        inherit kiele;
+        defaultPackage = kiele;
+      };
     };
 }
