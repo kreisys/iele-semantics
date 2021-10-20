@@ -6,8 +6,10 @@
   outputs = { self, nixpkgs, utils }: utils.lib.simpleFlake {
     inherit nixpkgs;
     systems = [ "x86_64-darwin" "x86_64-linux" ];
-    packages = { hello }: {
-      inherit hello;
+    packages = { writeShellScriptBin }: rec {
+      hello = writeShellScriptBin "hello" ''
+        echo "hello world"
+      '';
       defaultPackage = builtins.trace self.modules hello;
     };
   };
