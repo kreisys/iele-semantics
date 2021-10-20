@@ -8,7 +8,7 @@
     systems = [ "x86_64-darwin" "x86_64-linux" ];
     packages = { writeShellScriptBin }: rec {
       hello = writeShellScriptBin "hello" ''
-        echo "hello world"
+        echo "hello world!"
       '';
       defaultPackage = builtins.trace self.modules hello;
     };
