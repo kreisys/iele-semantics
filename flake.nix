@@ -1,26 +1,28 @@
 {
   description = "IELE Semantics";
 
-  inputs.utils.url = "github:kreisys/flake-utils";
+  outputs = { self, nixpkgs }: let
+    combineModules = { lib, runCommand, input }: let
+      inherit (lib) concatStringsSep mapAttrs mapAttrsToList pipe;
+    in runCommand  "src-with-submodules" {} ''
+      cp -r ${input} $out
+      chmod -R +w $_
 
-  outputs = { self, nixpkgs, utils }: utils.lib.simpleFlake {
-    inherit nixpkgs;
-    systems = [ "x86_64-darwin" "x86_64-linux" ];
-    packages = { lib, writeShellScriptBin }: rec {
-      hello = let
-        src = builtins.fetchTree (builtins.trace self.modules.plugin self.modules.plugin);
-        #split = lib.splitString "?" self.modules.plugin;
-        #url = lib.head split;
-        #rev = lib.last (lib.splitString "=" (lib.last split));
-        #src = builtins.fetchTree {
-        #  inherit url rev;
-        #  submodules = true;
-        #};
-      in writeShellScriptBin "hello" ''
-        echo ${src}
-        echo "hello world!"
-      '';
-      defaultPackage = builtins.trace self.modules hello;
+      ${
+        pipe input.modules [
+          (mapAttrs (_: url: fetchTree url))
+          (mapAttrsToList (path: src: "cp -rT ${src} $out/${path}"))
+          (concatStringsSep "\n")
+        ]
+      }
+    '';
+  in {
+    packages.x86_64-linux.src-with-submodules = combineModules {
+      inherit (nixpkgs) lib;
+      inherit (nixpkgs.legacyPackages.x86_64-linux) runCommand;
+      input = self;
     };
+
+    defaultPackage.x86_64-linux = self.packages.x86_64-linux.src-with-submodules;
   };
 }
